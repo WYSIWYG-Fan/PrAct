@@ -15,10 +15,10 @@ import twitter4j.conf.ConfigurationBuilder;
 
 public class search {
 
-	public static boolean searchTwitter(String txt_query, double radius,
+	public static boolean searchTwitter(Connection con, String txt_query, double radius,
 			GeoLocation location) {
 
-		Connection con = datasource.connect();
+//		Connection con = datasource.connect();
 
 		if (con != null) {
 
@@ -55,6 +55,7 @@ public class search {
 				System.out.println("catch clause");
 			}
 
+			
 			return true;
 			
 		} else
