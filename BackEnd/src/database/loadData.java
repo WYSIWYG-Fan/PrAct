@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import database.models.KeywordModel;
+
 import twitter4j.Status;
 
 public class loadData {

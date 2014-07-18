@@ -1,4 +1,4 @@
-package database;
+package database.models;
 
 public class DatabaseEntry {
 

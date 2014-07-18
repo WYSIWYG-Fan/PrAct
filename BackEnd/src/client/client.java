@@ -3,10 +3,10 @@ package client;
 import java.sql.Connection;
 import java.util.ArrayList;
 
-import database.DatabaseEntry;
-import database.KeywordModel;
 import database.datasource;
 import database.loadData;
+import database.models.DatabaseEntry;
+import database.models.KeywordModel;
 import twitter4j.GeoLocation;
 import TwitterAPI.search;
 
