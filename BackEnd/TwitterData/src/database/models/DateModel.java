@@ -1,15 +1,16 @@
 package database.models;
 
 public class DateModel extends DatabaseEntry {
-	private int day;
-	private int month;
-	private int seasonid;
 
-	DateModel(int id, int day, int month, int seasonid) {
+	private int day;
+	private int month; 
+	private int seasonID;
+	
+	public DateModel(int id, int day, int month, int seasonID) {
 		super(id);
 		this.day = day;
 		this.month = month;
-		this.seasonid = seasonid;
+		this.seasonID = seasonID;
 	}
 
 	public int getDay() {
@@ -20,8 +21,8 @@ public class DateModel extends DatabaseEntry {
 		return month;
 	}
 
-	public int getSeasonid() {
-		return seasonid;
+	public int getSeasonID() {
+		return seasonID;
 	}
 
 }

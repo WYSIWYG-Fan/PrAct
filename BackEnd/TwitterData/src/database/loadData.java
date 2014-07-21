@@ -1,47 +1,58 @@
 package database;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import database.models.Citymodel;
+import database.models.CityModel;
 import database.models.DateModel;
 import database.models.KeywordModel;
 
-import twitter4j.Status;
-
 public class loadData {
 
-	public static ArrayList load(Connection con, String table, String model) {
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public static ArrayList load(Connection con, String table, String model,
+			String condition) {
 		ArrayList result = null;
 		try {
 			Statement st = con.createStatement();
-			String s = "SELECT * from TweetKeywords;";
+			String s = "SELECT * from " + table
+					+ (condition.length() > 0 ? (" where " + condition + ";")
+							: ";");
 			ResultSet rs = st.executeQuery(s);
 
 			// Get applicant Model, fill ArrayList
 			switch (model) {
 			case "KeywordModel":
 				result = new ArrayList<KeywordModel>();
-				while (rs.next() == true) {
+				while (rs.next()) {
 					result.add(new KeywordModel(Integer.parseInt(rs.getArray(1)
 							.toString()), rs.getArray(2).toString(), rs
 							.getArray(3).toString(), rs.getArray(4).toString()));
 				}
 				break;
-				
 			case "CityModel":
-				result = new ArrayList<Citymodel>();
-				while (rs.next() == true) {
-					result.add(new Citymodel(Integer.parseInt(rs.getArray(1)
-							.toString()), rs.getArray(2).toString(), Double.parseDouble(rs
-							.getArray(3).toString()), Double.parseDouble(rs.getArray(4).toString())));
+				result = new ArrayList<CityModel>();
+				while (rs.next()) {
+					result.add(new CityModel(Integer.parseInt(rs.getArray(1)
+							.toString()), rs.getArray(2).toString(), rs
+							.getArray(3).toString(), Double.parseDouble(rs
+							.getArray(4).toString()), Double.parseDouble(rs
+							.getArray(5).toString())));
 				}
 				break;
-				
+			case "DateModel":
+				result = new ArrayList<DateModel>();
+				while (rs.next()) {
+					result.add(new DateModel(Integer.parseInt(rs.getArray(1)
+							.toString()), Integer.parseInt(rs.getArray(2)
+							.toString()), Integer.parseInt(rs.getArray(3)
+							.toString()), Integer.parseInt(rs.getArray(4)
+							.toString())));
+				}
+				break;
 			default:
 				break;
 			}
