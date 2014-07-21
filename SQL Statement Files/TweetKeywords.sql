@@ -1,7 +1,4 @@
-﻿drop table "TweetKeywords";
-drop sequence keyword_id_seq cascade;
-
-CREATE TABLE "tweetkeyword" 
+﻿CREATE TABLE "tweetkeywords" 
 (
    keyword_id int primary key,
    german character varying(31),
@@ -11,7 +8,7 @@ CREATE TABLE "tweetkeyword"
 ;
 
 CREATE SEQUENCE keywords_id_seq;
-ALTER TABLE "tweetkeyword" ALTER "keyword_id" SET DEFAULT NEXTVAL('keywords_id_seq');
+ALTER TABLE "tweetkeywords" ALTER "keyword_id" SET DEFAULT NEXTVAL('keywords_id_seq');
 
 CREATE SEQUENCE keyword_id_seq;
 ALTER TABLE "tweetkeywords" ALTER "keyword_id" SET DEFAULT NEXTVAL('keyword_id_seq');

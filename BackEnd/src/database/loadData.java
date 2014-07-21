@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import database.models.Citymodel;
+import database.models.DateModel;
 import database.models.KeywordModel;
 
 import twitter4j.Status;
@@ -25,13 +27,21 @@ public class loadData {
 			case "KeywordModel":
 				result = new ArrayList<KeywordModel>();
 				while (rs.next() == true) {
-
 					result.add(new KeywordModel(Integer.parseInt(rs.getArray(1)
 							.toString()), rs.getArray(2).toString(), rs
 							.getArray(3).toString(), rs.getArray(4).toString()));
 				}
 				break;
-
+				
+			case "CityModel":
+				result = new ArrayList<Citymodel>();
+				while (rs.next() == true) {
+					result.add(new Citymodel(Integer.parseInt(rs.getArray(1)
+							.toString()), rs.getArray(2).toString(), Double.parseDouble(rs
+							.getArray(3).toString()), Double.parseDouble(rs.getArray(4).toString())));
+				}
+				break;
+				
 			default:
 				break;
 			}

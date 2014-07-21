@@ -25,7 +25,7 @@ public class datasource {
  
 			connection = DriverManager.getConnection(
 					"jdbc:postgresql://127.0.0.1:5432/PrAct", "postgres",
-					"Your-Password");												//TODO Passwort eintragen!!! ;)
+					"18jojo24");												//TODO Passwort eintragen!!! ;)
  
 		} catch (SQLException e) {
  
