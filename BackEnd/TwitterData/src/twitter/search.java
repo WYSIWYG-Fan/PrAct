@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import database.models.CityModel;
 import twitter4j.GeoLocation;
 import twitter4j.Query;
 import twitter4j.QueryResult;
@@ -17,7 +18,7 @@ import twitter4j.conf.ConfigurationBuilder;
 public class search {
 
 	public static boolean searchTwitter(Connection con, String txt_query,
-			int keywordid, double radius, GeoLocation location, boolean saveData, String datebegin, String dateend) {
+			int keywordid, double radius, CityModel location, boolean saveData, String datebegin, String dateend) {
 
 		// Connection con = datasource.connect();
 
@@ -43,19 +44,18 @@ public class search {
 			query.count(100);
 			query.setSince(datebegin);
 			query.setUntil(dateend);
-			query.setGeoCode(location, radius, Query.KILOMETERS);
+			query.setGeoCode(location.getLocation(), radius, Query.KILOMETERS);
 			QueryResult result;
+			
+			System.out.println(txt_query);
 
 			try {
 				result = twitter.search(query);
 				if (saveData && result != null) {
 					search.saveTwitterData(con, result, keywordid, location);
-				} else {
-					for (Status status : result.getTweets()) {
-						System.out.println("@"
-								+ status.getUser().getScreenName() + ":"
-								+ status.getText());
-					}
+				}
+				else {
+					System.out.println("No data");
 				}
 			} catch (TwitterException e) {
 				// TODO Auto-generated catch block
@@ -70,7 +70,7 @@ public class search {
 
 	@SuppressWarnings("deprecation")
 	private static boolean saveTwitterData(Connection con, QueryResult result,
-			int keywordid, GeoLocation location) {
+			int keywordid, CityModel location) {
 		Statement st;
 		for (Status status : result.getTweets()) {
 			try {
@@ -85,6 +85,7 @@ public class search {
 						+ status.getCreatedAt().getMonth() + ";";
 				ResultSet rs = st.executeQuery(sSelectDate);
 				int dateid;
+				System.out.println("Day of Status> " + status.getCreatedAt().getDay());
 
 				if (rs.next()) {
 					//get existant dateID
@@ -138,7 +139,7 @@ public class search {
 					}
 					
 					//insert Date into database, get dateID
-					String sInsertDate = "INSERT INTO datedimension (day, month, season_id) values("
+					String sInsertDate = "INSERT INTO datedimension (day, month, seasonid) values("
 							+ status.getCreatedAt().getDay()
 							+ ", "
 							+ status.getCreatedAt().getMonth()
@@ -159,22 +160,22 @@ public class search {
 				String text = status.getText();
 				text.replaceAll("'", " ");
 				text.replaceAll("\"", "");
-				String sInsertTweet = "INSERT INTO twitterdata (keyword_id, date_id, latitude, longitude, content) values("
+				String sInsertTweet = "INSERT INTO twitterdata (keywordid, dateid, latitude, longitude, content, cityid) values("
 						+ keywordid
 						+ ", "
 						+ dateid
 						+ ", "
-						+ (status.getGeoLocation() == null ? location
+						+ (status.getGeoLocation() == null ? location.getLocation()
 								.getLatitude() : status.getGeoLocation()
 								.getLatitude())
 						+ ", "
-						+ (status.getGeoLocation() == null ? location
+						+ (status.getGeoLocation() == null ? location.getLocation()
 								.getLongitude() : status.getGeoLocation()
 								.getLongitude())
-						+ ", "
-						+ "'"
+						+ ", '"
 						+ text
-						+ "'"
+						+ "', "
+						+ location.getId()
 						+ ");";
 				System.out.println(sInsertTweet);
 				st.execute(sInsertTweet);

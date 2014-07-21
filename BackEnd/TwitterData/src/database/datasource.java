@@ -25,8 +25,8 @@ public class datasource {
  
 			connection = DriverManager.getConnection(
 					"jdbc:postgresql://127.0.0.1:5432/PrAct", "postgres",
-					"18jojo24");												//TODO Passwort eintragen!!! ;)
- 
+					"password");												//TODO Passwort eintragen!!! ;)
+			System.out.println("Database connected.");
 		} catch (SQLException e) {
  
 			System.out.println("Connection Failed! Check output console");
@@ -49,6 +49,3 @@ public class datasource {
 	}
 	
 }
-
-
-

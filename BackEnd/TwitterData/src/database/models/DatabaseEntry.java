@@ -12,8 +12,4 @@ public class DatabaseEntry {
 		return id;
 	}
 
-	
-	
-	
-
 }
