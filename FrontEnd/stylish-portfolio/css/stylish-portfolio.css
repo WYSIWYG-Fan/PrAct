@@ -122,30 +122,41 @@ body {
 
 .intro {
   padding: 50px 0;
-}
+color: #878787;
+  }
 
 /* Services */
 
 .services {
   background: #7fbbda;
   padding: 50px 0;
-  color: #ffffff;
+  color: #878787;
 }
+
+
 
 .service-item {
   margin-bottom: 15px;
 }
 
 i.service-icon {
-  border: 3px solid #ffffff;
+  border: 3px solid #878787;
   border-radius: 50%;
   display: inline-block;
-  font-size: 56px;
-  width: 140px;
-  height: 140px;
-  line-height: 136px;
+  font-size: 32px;
+  color: #186cb5;
+  width: 55px;
+  height: 55px;
+  line-height: 48px;
   vertical-align: middle; 
   text-align: center;
+}
+
+.btn-l {
+  padding: 7px 7px;
+  font-size: 18px;
+  line-height: 1.0;
+  border-radius: 5px;
 }
 
 /* Callout */
@@ -153,13 +164,14 @@ i.service-icon {
 .callout {
   color: #ffffff;
   display: table;
-  height: 400px;
+  height: 300px;
   width: 100%;
   background: url(../img/callout.jpg) no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+  -webkit-background-size: 100%;
+  -moz-background-size: 100%;
+  -o-background-size: 100%;
+  background-size: 100%;
+  margin: 100px;
 }
 
 /* Portfolio */
@@ -174,6 +186,13 @@ i.service-icon {
 
 .img-portfolio {
   margin: 0 auto;
+}
+
+.img-logo {
+  margin: 0 50px;
+  vertical-align: right;
+  float: right;
+  width: 250px;
 }
 
 
