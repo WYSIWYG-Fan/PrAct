@@ -20,7 +20,7 @@ ALTER TABLE weatherdata2
 
 insert into weatherdata2 (weather_id, location, date, medium_temperature, maximum_wind, sunshine_duration, medium_cloud_amount, precipitation_height)
 select weather_id, 
-	location, 
+	location, --IMPORTANT: Load corresponding location id from citydimension
 	date.date_id, 
 	medium_temperature, 
 	maximum_wind, 
@@ -47,3 +47,5 @@ from datedimension d, (select weather_id,
 from "weatherdata" as t) AS t
 where d.day = t.day and d.month = t.month) as date
 order by date.date_id
+
+
