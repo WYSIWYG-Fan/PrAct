@@ -4,7 +4,7 @@
    keywordid int,
    dateid int,
    latitude double precision,
-   longtude double precision,
+   longitude double precision,
    content character varying(140)
 ) 
 ;

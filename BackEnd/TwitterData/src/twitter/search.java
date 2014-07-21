@@ -5,8 +5,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import database.models.CityModel;
-import twitter4j.GeoLocation;
 import twitter4j.Query;
 import twitter4j.QueryResult;
 import twitter4j.Status;
@@ -14,11 +12,13 @@ import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
 import twitter4j.conf.ConfigurationBuilder;
+import database.models.CityModel;
+import database.models.DateModel;
 
 public class search {
 
 	public static boolean searchTwitter(Connection con, String txt_query,
-			int keywordid, double radius, CityModel location, boolean saveData, String datebegin, String dateend) {
+			int keywordid, double radius, CityModel location, boolean saveData, String datebegin, String dateend, DateModel date) {
 
 		// Connection con = datasource.connect();
 
@@ -52,7 +52,7 @@ public class search {
 			try {
 				result = twitter.search(query);
 				if (saveData && result != null) {
-					search.saveTwitterData(con, result, keywordid, location);
+					search.saveTwitterData(con, result, keywordid, location, date);
 				}
 				else {
 					System.out.println("No data");
@@ -70,7 +70,7 @@ public class search {
 
 	@SuppressWarnings("deprecation")
 	private static boolean saveTwitterData(Connection con, QueryResult result,
-			int keywordid, CityModel location) {
+			int keywordid, CityModel location, DateModel date) {
 		Statement st;
 		for (Status status : result.getTweets()) {
 			try {
@@ -80,12 +80,11 @@ public class search {
 
 				// check whether date is already available
 				String sSelectDate = "SELECT date_id from DateDimension where day ="
-						+ status.getCreatedAt().getDay()
+						+ date.getDay()
 						+ " and month = "
-						+ status.getCreatedAt().getMonth() + ";";
+						+ date.getMonth() + ";";
 				ResultSet rs = st.executeQuery(sSelectDate);
 				int dateid;
-				System.out.println("Day of Status> " + status.getCreatedAt().getDay());
 
 				if (rs.next()) {
 					//get existant dateID

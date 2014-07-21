@@ -45,37 +45,33 @@ public class client {
 		int cur_day = cal.get(Calendar.DAY_OF_MONTH);
 
 		for (int c = 0; c < cities.size(); c++) {
-//			 for (int d = 0; d < dates.size() / 3; d = d + 3) {
+			// for (int d = 0; d < dates.size() / 3; d = d + 3) {
 			for (int d = 8; d > 0; d--) {
-//				date = dates.get(d);
-//				if (date.getMonth() == cur_month && date.getDay() > cur_day)
-//					break;
-				
-				String datebegin_month =(Integer.toString(cur_month).length() == 1 ? "0"
+				// date = dates.get(d);
+				// if (date.getMonth() == cur_month && date.getDay() > cur_day)
+				// break;
+
+				String datebegin_month = (Integer.toString(cur_month).length() == 1 ? "0"
 						+ cur_month
 						: (Integer.toString(cur_month)));
-				String datebegin_day =  (Integer.toString(cur_day - d)
-						.length() == 1 ? "0" + (cur_day - d)
-				: Integer.toString(cur_day -d));
-				datebegin = "2014-"
-						+ datebegin_month
-						+ "-"
-						+ datebegin_day;
-				
-				String dateend_month =(Integer.toString(cur_month).length() == 1 ? "0"
+				String datebegin_day = (Integer.toString(cur_day - d).length() == 1 ? "0"
+						+ (cur_day - d)
+						: Integer.toString(cur_day - d));
+				datebegin = "2014-" + datebegin_month + "-" + datebegin_day;
+				date = new DateModel(999, Integer.parseInt(datebegin_day),
+						Integer.parseInt(datebegin_month), 2);
+
+				String dateend_month = (Integer.toString(cur_month).length() == 1 ? "0"
 						+ cur_month
 						: Integer.toString(cur_month));
-				String dateend_day =  Integer.toString(cur_day - d +1)
-						.length() == 1 ? "0" + (cur_day -d +1)
-				: Integer.toString(cur_day -d +1);
-				
-				dateend = "2014-"
-						+ dateend_month
-						+ "-"
-						+ dateend_day;
-				
+				String dateend_day = Integer.toString(cur_day - d + 1).length() == 1 ? "0"
+						+ (cur_day - d + 1)
+						: Integer.toString(cur_day - d + 1);
+
+				dateend = "2014-" + dateend_month + "-" + dateend_day;
+
 				System.out.println(datebegin);
-				System.out.println(dateend);
+				// System.out.println(dateend);
 				// datebegin = "2014-" //uncommented for testing
 				// + (Integer.toString(date.getMonth()).length() == 1 ? "0"
 				// : "")
@@ -85,6 +81,7 @@ public class client {
 				// : "") + date.getDay();
 				// date = dates.get(d + 2);
 				// dateend = date.getDay() + "";
+
 				for (int k = 0; k < keywords.size(); k++) {
 					keyword = keywords.get(k);
 					counter++;
@@ -96,8 +93,8 @@ public class client {
 										+ keyword.getEnglish()
 										+ (keyword.getAbbrev().length() > 0 ? (" OR " + keyword
 												.getAbbrev()) : ""), keyword
-										.getId(), 50, cities.get(c), true, datebegin,
-								dateend);
+										.getId(), 50, cities.get(c), true,
+								datebegin, dateend, date);
 					if (counter == 180)
 						try {
 							TimeUnit.MINUTES.sleep(15);
@@ -114,6 +111,8 @@ public class client {
 					// keywords.get(i).getId(), 50,
 					// new GeoLocation(49.487715, 8.461563), true);
 				}
+				//
+
 			}
 		}
 	}
