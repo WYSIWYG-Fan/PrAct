@@ -15,7 +15,7 @@ insert into "citydimension"(name, province, latitude, longitude)
 values ('Mannheim', 'Baden-Württemberg', 49.487699, 8.46591);
 
 insert into "citydimension"(name, province, latitude, longitude) 
-values ('Feldberg (Schwarzwald)', 'Baden-Württemberg', 47.859735 8.036392);
+values ('Feldberg (Schwarzwald)', 'Baden-Württemberg', 47.859735, 8.036392);
 
 insert into "citydimension"(name, province, latitude, longitude) 
 values ('Freudenstadt', 'Baden-Württemberg', 48.464527, 8.417888);
