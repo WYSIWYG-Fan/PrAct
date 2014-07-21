@@ -12,25 +12,25 @@ CREATE SEQUENCE city_id_seq;
 ALTER TABLE "citydimension" ALTER "city_id" SET DEFAULT NEXTVAL('city_id_seq');
 
 insert into "citydimension"(name, province, latitude, longitude) 
-values ('Mannheim', 'Baden-Württemberg', 49.487699, 8.46591);
+values ('Mannheim', 'Baden-Wuerttemberg', 49.487699, 8.46591);
 
 insert into "citydimension"(name, province, latitude, longitude) 
-values ('Feldberg (Schwarzwald)', 'Baden-Württemberg', 47.859735, 8.036392);
+values ('Feldberg (Schwarzwald)', 'Baden-Wuerttemberg', 47.859735, 8.036392);
 
 insert into "citydimension"(name, province, latitude, longitude) 
-values ('Freudenstadt', 'Baden-Württemberg', 48.464527, 8.417888);
+values ('Freudenstadt', 'Baden-Wuerttemberg', 48.464527, 8.417888);
 
 insert into "citydimension"(name, province, latitude, longitude) 
-values ('Konstanz', 'Baden-Württemberg', 47.678045, 9.173069);
+values ('Konstanz', 'Baden-Wuerttemberg', 47.678045, 9.173069);
 
 insert into "citydimension"(name, province, latitude, longitude) 
-values ('Lahr (Schwarzwald)', 'Baden-Württemberg', 48.339179, 7.872219);
+values ('Lahr (Schwarzwald)', 'Baden-Wuerttemberg', 48.339179, 7.872219);
 
 insert into "citydimension"(name, province, latitude, longitude) 
-values ('Öhringen', 'Baden-Württemberg', 49.200018, 9.502873);
+values ('Öhringen', 'Baden-Wuerttemberg', 49.200018, 9.502873);
 
 insert into "citydimension"(name, province, latitude, longitude) 
-values ('Rheinstetten', 'Baden-Württemberg', 48.961811, 8.292245);
+values ('Rheinstetten', 'Baden-Wuerttemberg', 48.961811, 8.292245);
 
 insert into "citydimension"(name, province, latitude, longitude) 
-values ('Stuttgart', 'Baden-Württemberg', 48.775424, 9.181738);
+values ('Stuttgart', 'Baden-Wuerttemberg', 48.775424, 9.181738);
