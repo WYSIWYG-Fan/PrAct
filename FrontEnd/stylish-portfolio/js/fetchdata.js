@@ -1,11 +1,8 @@
 var lat;
 var lon;
-var forecast;
 
   // handles the click event for link 1, sends the query
 function getCities() {  
-$("#dropdown_city").on("select", function() {setCity();});
-
   getRequest(
       'php/selectcities.php', // URL for the PHP file
        drawOutputCities,  // handle successful request
@@ -72,7 +69,6 @@ function setCity() {
 function predict() {
 	setCity();
 	getForecast();
-	console.log(forecast);
 };
 
 function outputCity(responseText) {
@@ -86,11 +82,27 @@ function getForecast() {
 	var url = 'https://api.forecast.io/forecast/';
 	var data;
 
-		$.getJSON(url + apiKey + "/" + lat + "," + lon + "?callback=?", function(data) {
-			console.log(data);
-			forecast = data;
-			//weather data processing
+		$.getJSON(url + apiKey + "/" + lat + "," + lon + "," + "2014-07-25T12:00:00" + "?callback=?", function(data) {
+			var temp = (data.currently.temperature - 32)* 5/9;
+			var wind;
+			if (data.daily.data[0].windSpeed > "10") { wind = "1"; } else {wind = "0"};
+			var precip;
+			if (data.daily.data[0].precipIntensity > 0.1) {precip = 1;} else {precip = 0};
+			var sun;
+			if (data.daily.data[0].cloudCover > 0.5) {sun = 1;} else {sun = 0};
+			showActivities(temp, wind, precip, sun);
 		});
 }
+
+function showActivities(temp, wind, precip, sun) {
+	getRequest(
+      'php/recommendActivities.php?temp=' + temp + ',wind=' + wind + ',precip=' + precip + ',sun=' + sun, // URL for the PHP file
+       outputAct,  // handle successful request
+       drawError    // handle error
+	);
+};
+
+function outputAct(responseText) {
+};
 
 
