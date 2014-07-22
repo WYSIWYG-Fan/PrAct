@@ -2,8 +2,18 @@
 <head>
 <title>PostgrSQL Connection test</title>
 <script>
-/*function connect() 
+function connect() 
 {
+/*
+var sys = require("sys");
+var pg = require("postgres-pure");
+
+var db = new pg.connect("pgsql://postgres:password@localhost:5432/PrAct");
+db.query("SELECT * FROM DateDimension", function (data) {
+    console.log(data);
+});
+db.close();
+
 <?php
 // Verbindungsaufbau und Auswahl der Datenbank
 $dbconn = pg_connect("host=localhost dbname=PrAct user=postgres password=foo")
@@ -30,7 +40,8 @@ pg_free_result($result);
 // Verbindung schließen
 pg_close($dbconn);
 ?> 
-} */
+*/
+} 
 </script>
 
 <script>
@@ -91,11 +102,11 @@ function getRequest(url, success, error) {
 </head>
 
 <body>
-<!--
+
  <input type="button"
            name="btn_Connect"
            value="Click to Connect"
-           onclick="connect()" /> -->
+           onclick="connect()" /> 
 		   
 <a href="#" onclick="return getOutput();"> test </a>
 <div id="output">waiting for action</div>
