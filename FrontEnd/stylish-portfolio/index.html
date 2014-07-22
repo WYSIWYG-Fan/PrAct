@@ -16,12 +16,72 @@
     <link href="css/stylish-portfolio.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
 	<link href="datepicker/css/datepicker.css" rel="stylesheet">
-
 	
+	    <!-- JavaScript -->
+    <script src="js/jquery-1.10.2.js"></script>
+    <script src="js/bootstrap.js"></script>
+	<script src="datepicker/js/bootstrap-datepicker.js"></script>
+	<script src="datepicker/js/date.js"></script> 
+	
+	<!-- custom JS for database access-->
+	<script src="js/fetchdata.js"/> 
+	
+    <!-- Custom JavaScript for the Side Menu and Smooth Scrolling -->
+	
+	
+	<!-- Datepicker JS -->
+	
+	<script>
+	
+	var date = new Date();
+	date.setDate(date.getDate() + 7);
+	var string_seven_date = date.format("dd/MM/yyyy");
+	
+	
+	$('#dateinput .input-group.date').datepicker({
+    format: "dd/mm/yyyy",
+    weekStart: 0,
+    startDate: "today",
+    endDate: string_seven_date,
+    calendarWeeks: false,
+    todayHighlight: true
+    });
+	</script>
+	<!--/DatePicker-->
+	
+    <script>
+    $("#menu-close").click(function(e) {
+        e.preventDefault();
+        $("#sidebar-wrapper").toggleClass("active");
+    });
+    </script>
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#sidebar-wrapper").toggleClass("active");
+    });
+    </script>
+    <script>
+    $(function() {
+        $('a[href*=#]:not([href=#])').click(function() {
+            if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
+
+                var target = $(this.hash);
+                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                if (target.length) {
+                    $('html,body').animate({
+                        scrollTop: target.offset().top
+                    }, 2000);
+                    return false;
+                }
+            }
+        });
+    });
+    </script>
 
 </head>
 
-<body>
+<body onload="getCities();">
 
     <!-- Full Page Image Header Area -->
     <div id="top" class="header">
@@ -61,8 +121,8 @@
                     <div class="input-group" style="margin: 15px auto">
 					<span class="input-group-addon">City:</span>
 					<!--<input type="text" class="form-control" placeholder="Choose City"> -->
-					<select class="form-control">
-						<option style="color: #D1D0CE" selected disabled>Choose City...</option>
+					<select id="dropdown_city" class="form-control" onload="getCities()">
+		<!--				<option style="color: #D1D0CE" selected disabled>Choose City...</option>
 						<option>Mannheim</option>
 						<option>Feldberg (Schwarzwald)</option>
 						<option>Freudenstadt</option>
@@ -70,7 +130,7 @@
 						<option>Lahr (Schwarzwald)</option>
 						<option>&Oumlhringen</option>
 						<option>Rheinstetten</option>
-						<option>Stuttgart</option>
+						<option>Stuttgart</option> -->
 					</select>
 				</div>
 				</div>
@@ -90,7 +150,7 @@
 					</div>
 				</div>	
 				<div class="col-md-3 col-md-offset-1" style="margin: 15px auto 60px">
-					<a href="#result" class="btn btn-l btn-primary" onclick="getOutput()">Predict Act!</a>
+					<a href="#result" class="btn btn-l btn-primary" onclick="">Predict Act!</a>
 				</div>
 			
         </div>
@@ -106,7 +166,7 @@
     <!-- Callout -->
     <div class="callout">
         <div class="vert-text">
-            <div id="output"></div>
+            <h1></h1>
         </div>
     </div>
     <!-- /Callout -->
@@ -208,68 +268,6 @@
         </div>
     </footer>
     <!-- /Footer -->
-
-    <!-- JavaScript -->
-    <script src="js/jquery-1.10.2.js"></script>
-    <script src="js/bootstrap.js"></script>
-	<script src="datepicker/js/bootstrap-datepicker.js"></script>
-	<script src="datepicker/js/date.js"></script>
-	
-	<!-- custom JS for database access-->
-	<script src="js/fetchdata.js"/>
-	
-    <!-- Custom JavaScript for the Side Menu and Smooth Scrolling -->
-	
-	
-	<!-- Datepicker JS -->
-	
-	<script>
-	
-	var date = new Date();
-	date.setDate(date.getDate() + 7);
-	var string_seven_date = date.format("dd/MM/yyyy");
-	
-	
-	$('#dateinput .input-group.date').datepicker({
-    format: "dd/mm/yyyy",
-    weekStart: 0,
-    startDate: "today",
-    endDate: string_seven_date,
-    calendarWeeks: false,
-    todayHighlight: true
-    });
-	</script>
-	<!--/DatePicker-->
-	
-    <script>
-    $("#menu-close").click(function(e) {
-        e.preventDefault();
-        $("#sidebar-wrapper").toggleClass("active");
-    });
-    </script>
-    <script>
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#sidebar-wrapper").toggleClass("active");
-    });
-    </script>
-    <script>
-    $(function() {
-        $('a[href*=#]:not([href=#])').click(function() {
-            if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
-
-                var target = $(this.hash);
-                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-                if (target.length) {
-                    $('html,body').animate({
-                        scrollTop: target.offset().top
-                    }, 2000);
-                    return false;
-                }
-            }
-        });
-    });
-    </script>
 
 </body>
 

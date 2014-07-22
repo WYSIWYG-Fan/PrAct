@@ -1,7 +1,7 @@
 // handles the click event for link 1, sends the query
-function getOutput() {
+function getCities() {
   getRequest(
-      'php/postgres.php', // URL for the PHP file
+      'php/selectcities.php', // URL for the PHP file
        drawOutput,  // handle successful request
        drawError    // handle error
   );
@@ -9,12 +9,12 @@ function getOutput() {
 }  
 // handles drawing an error message
 function drawError () {
-    var container = document.getElementById('output');
+    var container = document.getElementById('dropdown_city');
     container.innerHTML = 'Bummer: there was an error!';
 }
 // handles the response, adds the html
 function drawOutput(responseText) {
-    var container = document.getElementById('output');
+    var container = document.getElementById('dropdown_city');
     container.innerHTML = responseText;
 }
 // helper function for cross-browser request object
