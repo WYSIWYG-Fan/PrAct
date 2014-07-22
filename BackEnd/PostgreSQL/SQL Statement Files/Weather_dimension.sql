@@ -135,5 +135,5 @@ values (40.0, 100, 1, 1, 0);
 INSERT INTO weatherdimension (min_temperature, max_temperature, wind, sunshine, precipitation)
 values (40.0, 100, 1, 1, 1);
 
-select * from weatherdimension;
+select * from weatherdimension where weather_id = 19 or weather_id = 11;
 
