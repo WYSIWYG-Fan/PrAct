@@ -1,54 +1,7 @@
-<html>
-<head>
-<title>PostgrSQL Connection test</title>
-<script>
-function connect() 
-{
-/*
-var sys = require("sys");
-var pg = require("postgres-pure");
-
-var db = new pg.connect("pgsql://postgres:password@localhost:5432/PrAct");
-db.query("SELECT * FROM DateDimension", function (data) {
-    console.log(data);
-});
-db.close();
-
-<?php
-// Verbindungsaufbau und Auswahl der Datenbank
-$dbconn = pg_connect("host=localhost dbname=PrAct user=postgres password=foo")
-    or die('Verbindungsaufbau fehlgeschlagen: ' . pg_last_error());
-
-// Eine SQL-Abfrge ausführen
-$query = 'SELECT * FROM citydimension';		//just for testing
-$result = pg_query($query) or die('Abfrage fehlgeschlagen: ' . pg_last_error());
-
-// Ergebnisse in HTML ausgeben
-echo "<table>\n";
-while ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {
-    echo "\t<tr>\n";
-    foreach ($line as $col_value) {
-        echo "\t\t<td>$col_value</td>\n";
-    }
-    echo "\t</tr>\n";
-}
-echo "</table>\n";
-
-// Speicher freigeben
-pg_free_result($result);
-
-// Verbindung schließen
-pg_close($dbconn);
-?> 
-*/
-} 
-</script>
-
-<script>
 // handles the click event for link 1, sends the query
 function getOutput() {
   getRequest(
-      'myAjax.php', // URL for the PHP file
+      'php/postgres.php', // URL for the PHP file
        drawOutput,  // handle successful request
        drawError    // handle error
   );
@@ -97,20 +50,3 @@ function getRequest(url, success, error) {
     req.send(null);
     return req;
 }
-</script>
-
-</head>
-
-<body>
-
- <input type="button"
-           name="btn_Connect"
-           value="Click to Connect"
-           onclick="connect()" /> 
-		   
-<a href="#" onclick="return getOutput();"> test </a>
-<div id="output">waiting for action</div>
-
-</body>
-
-</html>
