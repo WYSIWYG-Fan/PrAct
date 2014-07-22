@@ -121,16 +121,7 @@
                     <div class="input-group" style="margin: 15px auto">
 					<span class="input-group-addon">City:</span>
 					<!--<input type="text" class="form-control" placeholder="Choose City"> -->
-					<select id="dropdown_city" class="form-control" onload="getCities()">
-		<!--				<option style="color: #D1D0CE" selected disabled>Choose City...</option>
-						<option>Mannheim</option>
-						<option>Feldberg (Schwarzwald)</option>
-						<option>Freudenstadt</option>
-						<option>Konstanz</option>
-						<option>Lahr (Schwarzwald)</option>
-						<option>&Oumlhringen</option>
-						<option>Rheinstetten</option>
-						<option>Stuttgart</option> -->
+					<select id="dropdown_city" class="form-control" onselect="setCity()">
 					</select>
 				</div>
 				</div>
@@ -150,7 +141,7 @@
 					</div>
 				</div>	
 				<div class="col-md-3 col-md-offset-1" style="margin: 15px auto 60px">
-					<a href="#result" class="btn btn-l btn-primary" onclick="">Predict Act!</a>
+					<a href="#result" class="btn btn-l btn-primary" onclick="predict()">Predict Act!</a>
 				</div>
 			
         </div>
