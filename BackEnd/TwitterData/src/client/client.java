@@ -95,13 +95,15 @@ public class client {
 												.getAbbrev()) : ""), keyword
 										.getId(), 50, cities.get(c), true,
 								datebegin, dateend, date);
-					if (counter == 180)
+					if (counter == 180) {
 						try {
 							TimeUnit.MINUTES.sleep(15);
 						} catch (InterruptedException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
+					counter = 0;
+					};
 					// if (keywords.get(i).getEnglish().length() > 0)
 					// search.searchTwitter(con, keywords.get(i).getEnglish(),
 					// keywords.get(i).getId(), 50,
