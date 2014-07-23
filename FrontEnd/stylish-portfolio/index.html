@@ -16,12 +16,17 @@
     <link href="css/stylish-portfolio.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
 	<link href="datepicker/css/datepicker.css" rel="stylesheet">
+	<link rel="stylesheet" href="jquery.mCustomScrollbar.css" />
 	
 	    <!-- JavaScript -->
     <script src="js/jquery-1.10.2.js"></script>
     <script src="js/bootstrap.js"></script>
 	<script src="datepicker/js/bootstrap-datepicker.js"></script>
 	<script src="datepicker/js/date.js"></script> 
+	
+	<!-- Scroll Bar -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="jquery.mCustomScrollbar.concat.min.js"></script>
 	
 	<!-- custom JS for database access-->
 	<script src="js/fetchdata.js"></script> 
@@ -138,28 +143,26 @@
 					
 				</div>
 				
-				<div class="col-md-10">
-						<div class="row">
-							<div class="col-md-1">
+			<div class="col-md-10">
+				
+					<div style="width:20px; text-align:center">
 								<div class="vertical-line" style="height: 130px; margin-top: 30px"/>
-							</div>
-							<div class="col-md-1 result-item">
-								
+					</div>
+					<div>
+						<div class="result-icon_container" style="width:1000px">
+					
 									<img class="result-icon1" src="img/Act/Joggen.JPG">
-									Joggen
-			
-							</div>
-							<div class="col-md-1">
-								<div class="result-item">
+									<div class="result-item1">Joggen</div>
+							
+							
 									<img class="result-icon2" src="img/Act/Grillen.JPG">
-								</div>
-							</div>
+								
 						</div>
-				</div>
+					</div>
 				
             </div>
 	   
-    </div>
+		</div>
 	</div>
     <!-- /Result -->
 
@@ -187,6 +190,23 @@
     });
 	</script>
 	<!--/DatePicker-->
+	
+	<!-- Scrollbar-->
+	
+	<script>
+	
+    (function($){
+        $(window).load(function(){
+            $("result-icon_container").mCustomScrollbar();
+        });
+    })(jQuery);
+	
+	$("result-icon_container").mCustomScrollbar({
+    axis:"y" // horizontal scrollbar
+	});
+	</script>
+	
+	<!--/Scrollbar-->
 	
     <script>
     $("#menu-close").click(function(e) {
