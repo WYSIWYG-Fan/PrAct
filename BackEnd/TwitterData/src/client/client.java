@@ -23,7 +23,7 @@ public class client {
 		ArrayList<KeywordModel> keywords = loadData.load(con, new String(
 				"TweetKeywords"), "KeywordModel", "");
 		ArrayList<CityModel> cities = loadData.load(con, new String(
-				"CityDimension"), "CityModel", "province <> 'Baden-Württemberg'");
+				"CityDimension"), "CityModel", "city_id > 29");
 		// select only dates in summer due to runtime reasons
 		ArrayList<DateModel> dates = loadData.load(con, new String(
 				"DateDimension"), "DateModel", "seasonid = 2");
