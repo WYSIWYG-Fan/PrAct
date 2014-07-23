@@ -106,6 +106,10 @@ function getForecast(lat, lon, city) {
 	if (date.substr(6,2).indexOf("-") > -1) 
 		{month = date.substr(6,1);}
 		else {month = date.substr(6,2);};
+	//set Weather_date
+	document.getElementById("weather_date").innerHTML = date;
+	
+	//get date for forecast API
 	date = date + "T12:00:00";
 
 		$.getJSON(url + apiKey + "/" + lat + "," + lon + "," + date + "?callback=?", function(data) {
@@ -150,14 +154,29 @@ function showActivities(temp, wind, precip, sun) {
 };
 
 function outputAct(responseText) {
-	console.log(responseText);	
-	
+
 	// split activities into array
 	var acts_temp = responseText.split(" ");
-	for (i = 0; i < acts_temp.length; i = i + 2) { 
-		acts.push(acts_temp.shift());
+	var length = acts_temp.length;
+	for (i = 0; i < length; i = i+2) { 
+		if (acts_temp[0].length > 0) {
+			acts.push(acts_temp.shift());
+		}
+		else {
+			acts_temp.shift();
+		};
 		acts_temp.shift();
 	};
-	console.log(acts[0]);
-	console.log(acts[1]);
+	
+	setImages(acts);
+};
+
+
+function setImages(acts) {	
+	if (acts.length > 0) {
+		for (j = 0; j < acts.length; j++) {
+			document.getElementById("txt_act_" + (j+1)).innerHTML = 
+				"<img id='img_act_" + (j+1) + "' class='result-icon1' src='img/Act/" + acts[j] + ".JPG'>"+acts[j];
+		};
+	};
 };
