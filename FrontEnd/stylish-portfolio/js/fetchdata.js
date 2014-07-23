@@ -1,5 +1,6 @@
 var lat;
 var lon;
+var month;
 
   // handles the click event for link 1, sends the query
 function getCities() {  
@@ -82,8 +83,16 @@ function getForecast() {
 	var url = 'https://api.forecast.io/forecast/';
 	var data;
 
-		$.getJSON(url + apiKey + "/" + lat + "," + lon + "," + "2014-07-25T12:00:00" + "?callback=?", function(data) {
+	var date = $("#input_date").get(0).value;
+	if (date.substr(6,2).indexOf("-") > -1) 
+		{month = date.substr(6,1);}
+		else {month = date.substr(6,2);};
+	date = date + "T12:00:00";
+
+		$.getJSON(url + apiKey + "/" + lat + "," + lon + "," + date + "?callback=?", function(data) {
 			var temp = (data.currently.temperature - 32)* 5/9;
+			temp = temp + "";
+			temp = temp.substr(0, 5);
 			var wind;
 			if (data.daily.data[0].windSpeed > "10") { wind = "1"; } else {wind = "0"};
 			var precip;
@@ -95,14 +104,16 @@ function getForecast() {
 }
 
 function showActivities(temp, wind, precip, sun) {
+month = 7;
 	getRequest(
-      'php/recommendActivities.php?temp=' + temp + ',wind=' + wind + ',precip=' + precip + ',sun=' + sun, // URL for the PHP file
+      'php/recommendActivities.php?temp=' + temp + '&wind=' + wind + '&precip=' + precip + '&sun=' + sun + '&month=' + month, // URL for the PHP file
        outputAct,  // handle successful request
        drawError    // handle error
 	);
 };
 
 function outputAct(responseText) {
+console.log(responseText);
 };
 
 

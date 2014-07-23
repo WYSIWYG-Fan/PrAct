@@ -24,60 +24,7 @@
 	<script src="datepicker/js/date.js"></script> 
 	
 	<!-- custom JS for database access-->
-	<script src="js/fetchdata.js"/> 
-	
-    <!-- Custom JavaScript for the Side Menu and Smooth Scrolling -->
-	
-	
-	<!-- Datepicker JS -->
-	
-	<script>
-	
-	var date = new Date();
-	date.setDate(date.getDate() + 7);
-	var string_seven_date = date.format("dd/MM/yyyy");
-	
-	
-	$('#dateinput .input-group.date').datepicker({
-    format: "dd/mm/yyyy",
-    weekStart: 0,
-    startDate: "today",
-    endDate: string_seven_date,
-    calendarWeeks: false,
-    todayHighlight: true
-    });
-	</script>
-	<!--/DatePicker-->
-	
-    <script>
-    $("#menu-close").click(function(e) {
-        e.preventDefault();
-        $("#sidebar-wrapper").toggleClass("active");
-    });
-    </script>
-    <script>
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#sidebar-wrapper").toggleClass("active");
-    });
-    </script>
-    <script>
-    $(function() {
-        $('a[href*=#]:not([href=#])').click(function() {
-            if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
-
-                var target = $(this.hash);
-                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-                if (target.length) {
-                    $('html,body').animate({
-                        scrollTop: target.offset().top
-                    }, 2000);
-                    return false;
-                }
-            }
-        });
-    });
-    </script>
+	<script src="js/fetchdata.js"></script> 
 
 </head>
 
@@ -137,7 +84,7 @@
 					<!-- Date Form -->
                     <div class="input-group date" style="margin: 15px auto">
 					<span class="input-group-addon">Date:</span>
-										<input type="text" class="form-control">
+										<input type="text" class="form-control" id="input_date">
 					</div>
 				</div>	
 				<div class="col-md-3 col-md-offset-1" style="margin: 15px auto 60px">
@@ -260,6 +207,59 @@
     </footer>
     <!-- /Footer -->
 
+	    <!-- Custom JavaScript for the Side Menu and Smooth Scrolling -->
+	
+	
+	<!-- Datepicker JS -->
+	
+	<script>
+	
+	var date = new Date();
+	date.setDate(date.getDate() + 7);
+	var string_seven_date = date.format("yyyy-MM-dd");
+	
+	
+	$('#dateinput .input-group.date').datepicker({
+    format: "yyyy-mm-dd",
+    weekStart: 0,
+    startDate: "today",
+    endDate: string_seven_date,
+    calendarWeeks: false,
+    todayHighlight: true
+    });
+	</script>
+	<!--/DatePicker-->
+	
+    <script>
+    $("#menu-close").click(function(e) {
+        e.preventDefault();
+        $("#sidebar-wrapper").toggleClass("active");
+    });
+    </script>
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#sidebar-wrapper").toggleClass("active");
+    });
+    </script>
+    <script>
+    $(function() {
+        $('a[href*=#]:not([href=#])').click(function() {
+            if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
+
+                var target = $(this.hash);
+                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                if (target.length) {
+                    $('html,body').animate({
+                        scrollTop: target.offset().top
+                    }, 2000);
+                    return false;
+                }
+            }
+        });
+    });
+    </script>
+	
 </body>
 
 </html>
