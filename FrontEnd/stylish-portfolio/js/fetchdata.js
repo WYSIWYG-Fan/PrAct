@@ -4,6 +4,7 @@ var month;
 //var city;
 var acts = [];
 
+/*
 function getCities() {  
   getRequest(
       'php/selectcities.php', // URL for the PHP file
@@ -12,17 +13,20 @@ function getCities() {
   );
   return false;
 }  
+*/
 
 // handles drawing an error message
 function drawError () {
     var container = document.getElementById('input_city');	//anderen container fuer errors generell nutzen!!!
     container.innerHTML = 'There was an error!';
 }
+/*
 // handles the response, adds the html
 function drawOutputCities(responseText) {
     var container = document.getElementById('input_city');
     container.innerHTML = responseText;
 }
+*/
 
 // helper function for cross-browser request object
 function getRequest(url, success, error) {
@@ -58,6 +62,11 @@ function getRequest(url, success, error) {
     return req;
 }
 
+function predict() {
+	acts = [];
+	setCity();
+//  getForecast();
+};
 
 function setCity() {
 	
@@ -80,16 +89,12 @@ function setCity() {
  // );
 };
 
-function predict() {
-	acts = [];
-	setCity();
-//  getForecast();
-};
-
+/*
 function outputCity(responseText) {
 	lat = (responseText.trim()).substr(0, responseText.indexOf(" ")).trim();
 	lon = (responseText.trim()).substr(responseText.indexOf(" ")+1, lat.length).trim();
 };
+*/
 
 function getForecast(lat, lon, city) {
 
