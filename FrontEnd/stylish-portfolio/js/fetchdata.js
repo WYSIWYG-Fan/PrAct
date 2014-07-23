@@ -158,6 +158,20 @@ function outputAct(responseText) {
 		acts.push(acts_temp.shift());
 		acts_temp.shift();
 	};
+	
+	
+	setImages(acts);
+};
+
+
+function setImages(acts) {
 	console.log(acts[0]);
 	console.log(acts[1]);
+	
+	if (acts.length > 0) {
+		for (j = 0; j < acts.length; j++) {
+			document.getElementById("txt_act_" + (j+1)).innerHTML = acts[j];
+			document.getElementById("img_act_" + (j+1)).src = "img/Act/" + acts[j] + ".JPG";
+		};
+	};
 };

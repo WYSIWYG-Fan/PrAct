@@ -19,7 +19,7 @@ and d.month = ".$_GET("month")."
 and d.seasonid = f.season_id 
 order by ranking desc limit 10;"; */
 
-$query = "select distinct k.german, ranking
+$query = "select distinct k.english, ranking
 from facts f 
 join weatherdimension w on f.weather_id = w.weather_id, 
 tweetkeywords k, 
