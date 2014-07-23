@@ -1,9 +1,9 @@
 var lat;
 var lon;
 var month;
-var city;
+//var city;
+var acts = [];
 
-  // handles the click event for link 1, sends the query
 function getCities() {  
   getRequest(
       'php/selectcities.php', // URL for the PHP file
@@ -15,12 +15,12 @@ function getCities() {
 
 // handles drawing an error message
 function drawError () {
-    var container = document.getElementById('dropdown_city');	//anderen container fuer errors generell nutzen!!!
+    var container = document.getElementById('input_city');	//anderen container fuer errors generell nutzen!!!
     container.innerHTML = 'There was an error!';
 }
 // handles the response, adds the html
 function drawOutputCities(responseText) {
-    var container = document.getElementById('dropdown_city');
+    var container = document.getElementById('input_city');
     container.innerHTML = responseText;
 }
 
@@ -60,17 +60,30 @@ function getRequest(url, success, error) {
 
 
 function setCity() {
-	city = $("#dropdown_city").get(0).options[$("#dropdown_city").get(0).selectedIndex].value;	
-	getRequest(
-      'php/selectcity.php?q=' + city, // URL for the PHP file
-       outputCity,  // handle successful request
-       drawError    // handle error
-  );
+	
+	//google geolocation api
+	var city_temp = $("#input_city").get(0).value;
+	var url = 'http://maps.googleapis.com/maps/api/geocode/json?address=';
+	$.getJSON(url + city_temp, function(data) {
+		console.log(data);
+		lat = data.results[0].geometry.location.lat;
+		lon = data.results[0].geometry.location.lng;
+		console.log(lat, lon, data.results[0].formatted_address);
+		getForecast(lat, lon, data.results[0].formatted_address);
+	});
+	
+//	city = $("#dropdown_city").get(0).options[$("#dropdown_city").get(0).selectedIndex].value;	
+//	getRequest(
+ //     'php/selectcity.php?q=' + city, // URL for the PHP file
+ //      outputCity,  // handle successful request
+ //      drawError    // handle error
+ // );
 };
 
 function predict() {
+	acts = [];
 	setCity();
-	getForecast();
+//  getForecast();
 };
 
 function outputCity(responseText) {
@@ -78,7 +91,7 @@ function outputCity(responseText) {
 	lon = (responseText.trim()).substr(responseText.indexOf(" ")+1, lat.length).trim();
 };
 
-function getForecast() {
+function getForecast(lat, lon, city) {
 
 	var apiKey = '400ecb30f9bfd3e667cd51eb00c7c09b';
 	var url = 'https://api.forecast.io/forecast/';
@@ -102,21 +115,23 @@ function getForecast() {
 			if (data.daily.data[0].cloudCover > 0.5) {sun = 1;} else {sun = 0};
 			showActivities(temp, wind, precip, sun);
 			
-			//adjust weather data image
+		
+			//adjust weather data image and city
+			document.getElementById("weather_city").innerHTML = city;
 			if (sun == 0 && precip == 0) {
 				document.getElementById("icon_weather").src = "http://localhost/PrAct/img/Wetter/bewoelkt.PNG";
-				document.getElementById("weather_txt").innerHTML = "bewoelkt";
+				document.getElementById("weather_txt").innerHTML = "cloudy";
 			} else 
 				if (sun == 1 && precip == 0) {
-					document.getElementById("weather_txt").innerHTML = "sonnig";
+					document.getElementById("weather_txt").innerHTML = "sunny";
 					document.getElementById("icon_weather").src = "";	//Sonne
 				} else if (sun == 1 && precip == 1) {
-					document.getElementById("weather_txt").innerHTML = "sonnig mit regen";
+					document.getElementById("weather_txt").innerHTML = "sunny with rain";
 					document.getElementById("icon_weather").src = ""; 	//Sonne und Regen
 					} else if (sun == 0 && precip == 1) {
-						document.getElementById("weather_txt").innerHTML = "regnerisch";;
+						document.getElementById("weather_txt").innerHTML = "rainy";;
 						document.getElementById("icon_weather").src = ""; //Regen
-					}
+					};
 		});
 }
 
@@ -130,8 +145,14 @@ function showActivities(temp, wind, precip, sun) {
 };
 
 function outputAct(responseText) {
-	document.getElementById("weather_city").innerHTML = city;
-	console.log(responseText);
+	console.log(responseText);	
+	
+	// split activities into array
+	var acts_temp = responseText.split(" ");
+	for (i = 0; i < acts_temp.length; i = i + 2) { 
+		acts.push(acts_temp.shift());
+		acts_temp.shift();
+	};
+	console.log(acts[0]);
+	console.log(acts[1]);
 };
-
-
