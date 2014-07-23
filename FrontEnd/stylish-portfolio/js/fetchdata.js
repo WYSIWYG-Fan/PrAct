@@ -1,6 +1,7 @@
 var lat;
 var lon;
 var month;
+var city;
 
   // handles the click event for link 1, sends the query
 function getCities() {  
@@ -59,7 +60,7 @@ function getRequest(url, success, error) {
 
 
 function setCity() {
-	var city = $("#dropdown_city").get(0).options[$("#dropdown_city").get(0).selectedIndex].value;	
+	city = $("#dropdown_city").get(0).options[$("#dropdown_city").get(0).selectedIndex].value;	
 	getRequest(
       'php/selectcity.php?q=' + city, // URL for the PHP file
        outputCity,  // handle successful request
@@ -100,11 +101,27 @@ function getForecast() {
 			var sun;
 			if (data.daily.data[0].cloudCover > 0.5) {sun = 1;} else {sun = 0};
 			showActivities(temp, wind, precip, sun);
+			
+			//adjust weather data image
+			if (sun == 0 && precip == 0) {
+				document.getElementById("icon_weather").src = "http://localhost/PrAct/img/Wetter/bewoelkt.PNG";
+				document.getElementById("weather_txt").innerHTML = "bewoelkt";
+			} else 
+				if (sun == 1 && precip == 0) {
+					document.getElementById("weather_txt").innerHTML = "sonnig";
+					document.getElementById("icon_weather").src = "";	//Sonne
+				} else if (sun == 1 && precip == 1) {
+					document.getElementById("weather_txt").innerHTML = "sonnig mit regen";
+					document.getElementById("icon_weather").src = ""; 	//Sonne und Regen
+					} else if (sun == 0 && precip == 1) {
+						document.getElementById("weather_txt").innerHTML = "regnerisch";;
+						document.getElementById("icon_weather").src = ""; //Regen
+					}
 		});
 }
 
 function showActivities(temp, wind, precip, sun) {
-month = 7;
+	month = 7;
 	getRequest(
       'php/recommendActivities.php?temp=' + temp + '&wind=' + wind + '&precip=' + precip + '&sun=' + sun + '&month=' + month, // URL for the PHP file
        outputAct,  // handle successful request
@@ -113,7 +130,8 @@ month = 7;
 };
 
 function outputAct(responseText) {
-console.log(responseText);
+	document.getElementById("weather_city").innerHTML = city;
+	console.log(responseText);
 };
 
 
