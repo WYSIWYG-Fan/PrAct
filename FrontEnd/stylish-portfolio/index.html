@@ -16,17 +16,25 @@
     <link href="css/stylish-portfolio.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
 	<link href="datepicker/css/datepicker.css" rel="stylesheet">
-	<link rel="stylesheet" href="jquery.mCustomScrollbar.css" />
+	<link rel="stylesheet" href="Scrollbar/jquery.mCustomScrollbar.css">
 	
-	    <!-- JavaScript -->
+	<!-- Scroll Bar -->
+			<!-- Google CDN jQuery with fallback to local -->
+			<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+			<script>window.jQuery || document.write('<script src="../js/minified/jquery-1.11.0.min.js"><\/script>')</script>
+				
+			<!-- custom scrollbar plugin -->
+			<script src="Scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+	<!-- /Scroll Bar -->
+	
+	
+	<!-- JavaScript -->
     <script src="js/jquery-1.10.2.js"></script>
     <script src="js/bootstrap.js"></script>
 	<script src="datepicker/js/bootstrap-datepicker.js"></script>
 	<script src="datepicker/js/date.js"></script> 
 	
-	<!-- Scroll Bar -->
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<script src="jquery.mCustomScrollbar.concat.min.js"></script>
+	
 	
 	<!-- custom JS for database access-->
 	<script src="js/fetchdata.js"></script> 
@@ -131,7 +139,7 @@
 			<div class="row" style="margin-left: -60px">
 				<div class="col-md-2">
 					 <img id="icon_weather" class="img-wetter img-responsive" src="img/Wetter/bewoelkt.PNG">
-					<p id="weather_txt" style="text-align:left; font-size:16px; margin-left: 60px" ></p>
+					<p id="weather_txt" style="text-align:left; font-size:16px; margin-left: 60px" >Wetter</p>
 
 					
 					<div>
@@ -139,24 +147,61 @@
 					30px" src="img/Wetter/location.PNG">
 					</div>
 						<div style="text-align:left; font-size:20px; margin-top: 17px; margin-left: 60px" id="weather_city">
+						Stadt</div>
+					
+				<br>
+					
+					<div style="vertical-align:left; float:left; width: 
+					30px; color: #186cb5; font-size: 32px;">
+					<i class="fa fa-calendar"></i>
+					</div>
+						<div style="text-align:left; font-size:20px; margin-top: 17px; margin-left: 60px" id="weather_date">Datum
 						</div>
 					
 				</div>
 				
+			
+				
 			<div class="col-md-10">
 				
 					<div style="width:20px; text-align:center">
-								<div class="vertical-line" style="height: 130px; margin-top: 30px"/>
+								<div class="vertical-line" style="height: 200px; margin-top: 50px"/>
 					</div>
 					<div>
-						<div class="result-icon_container" style="width:1000px">
-					
+						<div id="result-icon_container"  class="content horizontal-images" style="width:1000px">
+									<div class="result-item1">
 									<img class="result-icon1" src="img/Act/Joggen.JPG">
-									<div class="result-item1">Joggen</div>
+									Joggen</div>
 							
-							
+									<div class="result-item2">
 									<img class="result-icon2" src="img/Act/Grillen.JPG">
-								
+									Grillen</div>
+									
+									<div class="result-item3">
+									<img class="result-icon3" src="img/Act/Kino.JPG">
+									Kino</div>
+									
+									<div class="result-item4">
+									<img class="result-icon4" src="img/Act/Snowboard.JPG">
+									Snowboard</div>
+									
+									<div class="result-item5">
+									<img class="result-icon5" src="img/Act/Grillen.JPG">
+									Grillen</div>
+									
+									<div class="result-item6">
+									<img class="result-icon6" src="img/Act/Grillen.JPG">
+									Grillen</div>
+									
+									<div class="result-item7">
+									<img class="result-icon7" src="img/Act/Grillen.JPG">
+									Grillen</div>
+									
+									<div class="result-item8">
+									<img class="result-icon8" src="img/Act/Grillen.JPG">
+									Grillen</div>
+									
+									
 						</div>
 					</div>
 				
@@ -194,16 +239,18 @@
 	<!-- Scrollbar-->
 	
 	<script>
-	
-    (function($){
-        $(window).load(function(){
-            $("result-icon_container").mCustomScrollbar();
-        });
-    })(jQuery);
-	
-	$("result-icon_container").mCustomScrollbar({
-    axis:"y" // horizontal scrollbar
-	});
+  (function($){
+			$(window).load(function(){
+				
+				$("#result-icon_container").mCustomScrollbar({
+					axis:"x",
+					advanced:{
+						autoExpandHorizontalScroll:true
+					}
+				});
+				
+			});
+		})(jQuery);
 	</script>
 	
 	<!--/Scrollbar-->
