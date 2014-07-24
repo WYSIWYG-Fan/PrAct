@@ -1,32 +1,11 @@
-var lat;
-var lon;
 var month;
-//var city;
 var acts = [];
 
-/*
-function getCities() {  
-  getRequest(
-      'php/selectcities.php', // URL for the PHP file
-       drawOutputCities,  // handle successful request
-       drawError    // handle error
-  );
-  return false;
-}  
-*/
 
 // handles drawing an error message
 function drawError () {
-    var container = document.getElementById('input_city');	//anderen container fuer errors generell nutzen!!!
-    container.innerHTML = 'There was an error!';
+    console.log("php error");
 }
-/*
-// handles the response, adds the html
-function drawOutputCities(responseText) {
-    var container = document.getElementById('input_city');
-    container.innerHTML = responseText;
-}
-*/
 
 // helper function for cross-browser request object
 function getRequest(url, success, error) {
@@ -65,7 +44,6 @@ function getRequest(url, success, error) {
 function predict() {
 	acts = [];
 	setCity();
-//  getForecast();
 };
 
 function setCity() {
@@ -74,27 +52,12 @@ function setCity() {
 	var city_temp = $("#input_city").get(0).value;
 	var url = 'http://maps.googleapis.com/maps/api/geocode/json?address=';
 	$.getJSON(url + city_temp, function(data) {
-		console.log(data);
 		lat = data.results[0].geometry.location.lat;
 		lon = data.results[0].geometry.location.lng;
-		console.log(lat, lon, data.results[0].formatted_address);
 		getForecast(lat, lon, data.results[0].formatted_address);
 	});
 	
-//	city = $("#dropdown_city").get(0).options[$("#dropdown_city").get(0).selectedIndex].value;	
-//	getRequest(
- //     'php/selectcity.php?q=' + city, // URL for the PHP file
- //      outputCity,  // handle successful request
- //      drawError    // handle error
- // );
 };
-
-/*
-function outputCity(responseText) {
-	lat = (responseText.trim()).substr(0, responseText.indexOf(" ")).trim();
-	lon = (responseText.trim()).substr(responseText.indexOf(" ")+1, lat.length).trim();
-};
-*/
 
 function getForecast(lat, lon, city) {
 
@@ -128,18 +91,18 @@ function getForecast(lat, lon, city) {
 			//adjust weather data image and city
 			document.getElementById("weather_city").innerHTML = city;
 			if (sun == 0 && precip == 0) {
-				document.getElementById("icon_weather").src = "http://localhost/PrAct/img/Wetter/bewoelkt.PNG";
+				document.getElementById("icon_weather").src = "http://localhost/PrAct/img/Wetter/cloudy.PNG";
 				document.getElementById("weather_txt").innerHTML = "cloudy";
 			} else 
 				if (sun == 1 && precip == 0) {
 					document.getElementById("weather_txt").innerHTML = "sunny";
-					document.getElementById("icon_weather").src = "";	//Sonne
+					document.getElementById("icon_weather").src = "http://localhost/PrAct/img/Wetter/sunny.PNG";	
 				} else if (sun == 1 && precip == 1) {
-					document.getElementById("weather_txt").innerHTML = "sunny with rain";
-					document.getElementById("icon_weather").src = ""; 	//Sonne und Regen
+					document.getElementById("weather_txt").innerHTML = "http://localhost/PrAct/img/Wetter/sunrain.PNG";
+					document.getElementById("icon_weather").src = ""; 	
 					} else if (sun == 0 && precip == 1) {
 						document.getElementById("weather_txt").innerHTML = "rainy";;
-						document.getElementById("icon_weather").src = ""; //Regen
+						document.getElementById("icon_weather").src = "http://localhost/PrAct/img/Wetter/rainy.PNG";
 					};
 		});
 }
@@ -156,6 +119,7 @@ function showActivities(temp, wind, precip, sun) {
 function outputAct(responseText) {
 
 	// split activities into array
+	acts = [];
 	var acts_temp = responseText.split(" ");
 	var length = acts_temp.length;
 	for (i = 0; i < length; i = i+2) { 
@@ -173,10 +137,16 @@ function outputAct(responseText) {
 
 
 function setImages(acts) {	
+	//clear old image data
+	for (i = 1; i < 11; i++) {
+		document.getElementById("txt_act_" + i).innerHTML = "";
+	};
+	//set new images	
 	if (acts.length > 0) {
 		for (j = 0; j < acts.length; j++) {
 			document.getElementById("txt_act_" + (j+1)).innerHTML = 
-				"<img id='img_act_" + (j+1) + "' class='result-icon1' src='img/Act/" + acts[j] + ".JPG'>"+acts[j];
+				"<img id='img_act_" + (j+1) + "' class='result-icon" + (j+1) + "' src='img/Act/" + acts[j] + ".JPG'>"+acts[j];
 		};
+		
 	};
 };

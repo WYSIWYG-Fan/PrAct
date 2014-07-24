@@ -12,20 +12,11 @@
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.css" rel="stylesheet">
 
-    <!-- Add custom CSS here -->
+    <!-- custom CSS here -->
     <link href="css/stylish-portfolio.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
 	<link href="datepicker/css/datepicker.css" rel="stylesheet">
 	<link rel="stylesheet" href="Scrollbar/jquery.mCustomScrollbar.css">
-	
-	<!-- Scroll Bar -->
-			<!-- Google CDN jQuery with fallback to local -->
-			<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-			<script>window.jQuery || document.write('<script src="../js/minified/jquery-1.11.0.min.js"><\/script>')</script>
-				
-			<!-- custom scrollbar plugin -->
-			<script src="Scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
-	<!-- /Scroll Bar -->
 	
 	
 	<!-- JavaScript -->
@@ -33,7 +24,6 @@
     <script src="js/bootstrap.js"></script>
 	<script src="datepicker/js/bootstrap-datepicker.js"></script>
 	<script src="datepicker/js/date.js"></script> 
-	
 	
 	
 	<!-- custom JS for database access-->
@@ -80,8 +70,7 @@
 					<!-- City Form -->
                     <div class="input-group" style="margin: 15px auto">
 					<span class="input-group-addon">City:</span>
-					<!--<input type="text" class="form-control" placeholder="Choose City"> -->
-					<select id="dropdown_city" class="form-control">
+					<input id="input_city" type="text" class="form-control">
 					</select>
 				</div>
 				</div>
@@ -170,37 +159,34 @@
 					<div>
 						<div id="result-icon_container"  class="content horizontal-images" style="width:1000px">
 									<div id="txt_act_1" class="result-item1">
-											<!--<img id="img_act_1" class="result-icon1" src="img/Act/Joggen.JPG">-->
 									</div>
 							
 									<div id="txt_act_2" class="result-item2">
-										<!--<img id="img_act_2" class="result-icon2" src="">-->
 									</div>
 									
 									<div id="txt_act_3" class="result-item3">
-										<!--<img id="img_act_3" class="result-icon3" src="">-->
 									</div>
 									
 									<div id="txt_act_4" class="result-item4">
-										<!--<img id="img_act_4" class="result-icon4" src="">-->
 									</div>
 									
 									<div id="txt_act_5" class="result-item5">
-										<!--<img id="img_act_5" class="result-icon5" src="">-->
 									</div>
 									
 									<div id="txt_act_6" class="result-item6">
-										<!--<img id="img_act_6" class="result-icon6" src="">-->
 									</div>
 									
 									<div id="txt_act_7" class="result-item7">
-										<!--<img id="img_act_7" class="result-icon7" src="">-->
 									</div>
 									
 									<div id="txt_act_8" class="result-item8">
-										<!--<img id="img_act_8" class="result-icon8" src="">-->
 									</div>
 									
+									<div id="txt_act_9" class="result-item8">
+									</div>
+									
+									<div id="txt_act_10" class="result-item8">
+									</div>
 						</div>
 					</div>
 				
@@ -234,25 +220,6 @@
     });
 	</script>
 	<!--/DatePicker-->
-	
-	<!-- Scrollbar-->
-	
-	<script>
-  (function($){
-			$(window).load(function(){
-				
-				$("#result-icon_container").mCustomScrollbar({
-					axis:"x",
-					advanced:{
-						autoExpandHorizontalScroll:true
-					}
-				});
-				
-			});
-		})(jQuery);
-	</script>
-	
-	<!--/Scrollbar-->
 	
     <script>
     $("#menu-close").click(function(e) {
