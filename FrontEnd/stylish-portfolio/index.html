@@ -12,33 +12,31 @@
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.css" rel="stylesheet">
 
-    <!-- Add custom CSS here -->
+    <!-- custom CSS here -->
     <link href="css/stylish-portfolio.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
 	<link href="datepicker/css/datepicker.css" rel="stylesheet">
-	<link rel="stylesheet" href="jquery.mCustomScrollbar.css" />
+	<link rel="stylesheet" href="Scrollbar/jquery.mCustomScrollbar.css">
 	
-	    <!-- JavaScript -->
+	
+	<!-- JavaScript -->
     <script src="js/jquery-1.10.2.js"></script>
     <script src="js/bootstrap.js"></script>
 	<script src="datepicker/js/bootstrap-datepicker.js"></script>
 	<script src="datepicker/js/date.js"></script> 
 	
-	<!-- Scroll Bar -->
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<script src="jquery.mCustomScrollbar.concat.min.js"></script>
 	
 	<!-- custom JS for database access-->
 	<script src="js/fetchdata.js"></script> 
 
 </head>
 
-<body onload="getCities();">
+<body>
 
     <!-- Full Page Image Header Area -->
     <div id="top" class="header">
         <div class="vert-text" style="margin: 350px">
-            <h3>Predictive Action suggestion Based on Location and Weather</h3>
+            <h3>Predictive activities based on recent tweets and weather forecast </h3>
 				<div style="position: relative; top:100px; left: -40px">
 					<h1 style="color: #FFFFFF; font-size: 5.5em "> 1. <a  href="#inputForm" style="position: relative; top:-8px" class="btn btn-primary btn-lg"><b>Start</b></a> </h1>
 				</div>
@@ -72,9 +70,7 @@
 					<!-- City Form -->
                     <div class="input-group" style="margin: 15px auto">
 					<span class="input-group-addon">City:</span>
-					<!--<input type="text" class="form-control" placeholder="Choose City"> -->
-					<!--<select id="dropdown_city" class="form-control">-->
-					<input type="text" class="form-control" id="input_city">
+					<input id="input_city" type="text" class="form-control">
 					</select>
 				</div>
 				</div>
@@ -132,32 +128,65 @@
 			<div class="row" style="margin-left: -60px">
 				<div class="col-md-2">
 					 <img id="icon_weather" class="img-wetter img-responsive" src="img/Wetter/bewoelkt.PNG">
-					<p id="weather_txt" style="text-align:left; font-size:16px; margin-left: 60px" ></p>
+					<p id="weather_txt" style="text-align:left; font-size:16px; margin-left: 60px" >Weather</p>
 
 					
 					<div>
 					<img class="img-responsive" style="vertical-align:left; float:left; width: 
 					30px" src="img/Wetter/location.PNG">
 					</div>
-						<div style="text-align:left; font-size:20px; margin-top: 17px; margin-left: 60px" id="weather_city">
+						<div style="text-align:left; font-size:20px; margin-top: 17px; margin-left: 60px" id="weather_city">City
+						</div>
+					
+				<br>
+					
+					<div style="vertical-align:left; float:left; width: 
+					30px; color: #186cb5; font-size: 32px;">
+					<i class="fa fa-calendar"></i>
+					</div>
+						<div style="text-align:left; font-size:20px; margin-top: 17px; margin-left: 60px" id="weather_date">Date
 						</div>
 					
 				</div>
 				
+			
+				
 			<div class="col-md-10">
 				
 					<div style="width:20px; text-align:center">
-								<div class="vertical-line" style="height: 130px; margin-top: 30px"/>
+								<div class="vertical-line" style="height: 200px; margin-top: 50px"/>
 					</div>
 					<div>
-						<div class="result-icon_container" style="width:1000px">
-					
-									<img class="result-icon1" src="img/Act/Joggen.JPG">
-									<div class="result-item1">Joggen</div>
+						<div id="result-icon_container"  class="content horizontal-images" style="width:1000px">
+									<div id="txt_act_1" class="result-item1">
+									</div>
 							
-							
-									<img class="result-icon2" src="img/Act/Grillen.JPG">
-								
+									<div id="txt_act_2" class="result-item2">
+									</div>
+									
+									<div id="txt_act_3" class="result-item3">
+									</div>
+									
+									<div id="txt_act_4" class="result-item4">
+									</div>
+									
+									<div id="txt_act_5" class="result-item5">
+									</div>
+									
+									<div id="txt_act_6" class="result-item6">
+									</div>
+									
+									<div id="txt_act_7" class="result-item7">
+									</div>
+									
+									<div id="txt_act_8" class="result-item8">
+									</div>
+									
+									<div id="txt_act_9" class="result-item8">
+									</div>
+									
+									<div id="txt_act_10" class="result-item8">
+									</div>
 						</div>
 					</div>
 				
@@ -191,23 +220,6 @@
     });
 	</script>
 	<!--/DatePicker-->
-	
-	<!-- Scrollbar-->
-	
-	<script>
-	
-    (function($){
-        $(window).load(function(){
-            $("result-icon_container").mCustomScrollbar();
-        });
-    })(jQuery);
-	
-	$("result-icon_container").mCustomScrollbar({
-    axis:"y" // horizontal scrollbar
-	});
-	</script>
-	
-	<!--/Scrollbar-->
 	
     <script>
     $("#menu-close").click(function(e) {
